@@ -6,6 +6,13 @@ firewalld-service-mosh:
     - ports:
       - {{ mosh_settings.ports.udp }}/udp
 
-{# TODO - ensure firewalld actually adds the mosh service to the permitted list... #}
+firewalld-allow-mosh:
+  firewalld.present:
+    - name: {{ mosh_settings.firewalld.zone }}
+    - services:
+      - mosh
+    - prune_services: False	
+    - require:
+      - firewalld: firewalld-service-mosh
 
-{# EOF #}			
+{# EOF #}
