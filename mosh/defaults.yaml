@@ -1,0 +1,6 @@
+mosh:
+  lookup: {}
+  ports:
+    udp: 60000-61000
+  firewalld:
+    zone: public

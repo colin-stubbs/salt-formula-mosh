@@ -1,0 +1,11 @@
+{% import_yaml 'mosh/defaults.yaml' as default_settings %}
+
+{% set os_family_map = salt['grains.filter_by']({
+  'default': {
+    'pkgs': [ 'mosh' ], 
+  },
+}, grain='os_family', default='default', merge=salt['pillar.get']('mosh:lookup')) %} 
+
+{% do default_settings.template.lookup.update(os_family_map) %}
+
+{% set mosh_settings = salt['pillar.get']( 'mosh', default=default_settings.mosh, merge=True, ) %}
