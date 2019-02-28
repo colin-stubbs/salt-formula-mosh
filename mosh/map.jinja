@@ -6,6 +6,6 @@
   },
 }, grain='os_family', default='default', merge=salt['pillar.get']('mosh:lookup')) %} 
 
-{% do default_settings.template.lookup.update(os_family_map) %}
+{% do default_settings.mosh.lookup.update(os_family_map) %}
 
 {% set mosh_settings = salt['pillar.get']( 'mosh', default=default_settings.mosh, merge=True, ) %}
